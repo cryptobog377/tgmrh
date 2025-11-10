@@ -8,11 +8,12 @@
     body {
       margin: 0;
       overflow: hidden;
-      background-color: #ffffff;
+      background-color: #fff;
       color: #000;
       font-family: 'Courier New', monospace;
       height: 100vh;
       width: 100vw;
+      position: relative;
     }
 
     h1 {
@@ -20,74 +21,121 @@
       top: 20px;
       width: 100%;
       text-align: center;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      z-index: 3;
     }
 
     .sixty-eight {
       position: absolute;
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: bold;
-      color: rgba(0, 0, 0, 0.7);
+      color: rgba(0, 0, 0, 0.5);
       user-select: none;
-      transition: transform 2s ease, opacity 1s ease;
+      transition: transform 1.5s ease, opacity 1.5s ease;
+      z-index: 0;
+    }
+
+    .bottom-panel {
+      position: fixed;
+      bottom: 40px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      z-index: 5;
+    }
+
+    .ca-box {
+      font-family: monospace;
+      background: rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.2);
+      border-radius: 10px;
+      padding: 10px 25px;
+      color: #111;
+      font-size: 0.9rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #000000, #222222);
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 10px 28px;
+      border-radius: 25px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+      background: linear-gradient(90deg, #333, #000);
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
     }
   </style>
 </head>
 <body>
-  <h1>The great meme reset: Happens — The Humble 68:</h1>
+  <h1>The great meme reset: Happens — The Humble 68</h1>
+
+  <div class="bottom-panel">
+    <div class="ca-box">CA: TBA</div>
+    <a href="https://x.com/i/communities/1988030401877541331" target="_blank" class="btn">Join X Community</a>
+  </div>
 
   <script>
-    const COUNT = 25; // количество чисел 68
+    const COUNT = 100;
     const body = document.body;
     const elements = [];
 
-    // создаем элементы
+    // создать много "68"
     for (let i = 0; i < COUNT; i++) {
       const el = document.createElement('div');
       el.classList.add('sixty-eight');
       el.textContent = '68';
       el.style.left = Math.random() * 100 + 'vw';
       el.style.top = Math.random() * 100 + 'vh';
-      el.style.fontSize = (Math.random() * 4 + 2) + 'rem';
-      el.style.opacity = Math.random() * 0.8 + 0.2;
+      el.style.fontSize = (Math.random() * 4 + 1.5) + 'rem';
+      el.style.opacity = Math.random() * 0.7 + 0.3;
       body.appendChild(el);
       elements.push(el);
     }
 
-    // движение
+    // хаотичное движение
     function animate() {
       elements.forEach(el => {
         const x = Math.random() * 100;
         const y = Math.random() * 100;
-        const scale = 0.8 + Math.random() * 1.4;
-        const rot = Math.random() * 360;
+        const scale = 0.5 + Math.random() * 2.5;
+        const rot = Math.random() * 720 - 360;
         const opacity = 0.3 + Math.random() * 0.7;
 
         el.style.transform = `translate(${x}vw, ${y}vh) scale(${scale}) rotate(${rot}deg)`;
         el.style.opacity = opacity;
       });
-
-      requestAnimationFrame(() => {
-        setTimeout(animate, 2500 + Math.random() * 2000);
-      });
+      setTimeout(animate, 1000 + Math.random() * 1200);
     }
 
     animate();
 
-    // добавляем появление/исчезновение новых 68
+    // создаем новые "68", которые появляются и исчезают
     setInterval(() => {
       const el = document.createElement('div');
       el.classList.add('sixty-eight');
       el.textContent = '68';
       el.style.left = Math.random() * 100 + 'vw';
       el.style.top = Math.random() * 100 + 'vh';
-      el.style.fontSize = (Math.random() * 4 + 2) + 'rem';
+      el.style.fontSize = (Math.random() * 5 + 1) + 'rem';
       el.style.opacity = 0;
       body.appendChild(el);
       setTimeout(() => el.style.opacity = 1, 50);
-      setTimeout(() => el.remove(), 5000);
-    }, 1000);
+      setTimeout(() => el.remove(), 3000);
+    }, 400);
   </script>
 </body>
 </html>
