@@ -18,7 +18,7 @@
 
     h1 {
       position: fixed;
-      top: 20px;
+      top: 80px;
       width: 100%;
       text-align: center;
       font-size: 1.1rem;
@@ -36,15 +36,15 @@
       z-index: 0;
     }
 
-    .bottom-panel {
+    .top-panel {
       position: fixed;
-      bottom: 40px;
+      top: 20px;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 10px;
       z-index: 5;
     }
 
@@ -78,14 +78,61 @@
       background: linear-gradient(90deg, #333, #000);
       box-shadow: 0 0 20px rgba(0,0,0,0.4);
     }
+
+    .bottom-text {
+      position: fixed;
+      bottom: 40px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index: 4;
+    }
+
+    .block {
+      width: 25%;
+      background: rgba(0,0,0,0.05);
+      padding: 15px 20px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      text-align: center;
+      color: #111;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 900px) {
+      .bottom-text {
+        flex-direction: column;
+        align-items: center;
+      }
+      .block {
+        width: 80%;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>The great meme reset: Happens — The Humble 68</h1>
-
-  <div class="bottom-panel">
+  <div class="top-panel">
     <div class="ca-box">CA: TBA</div>
     <a href="https://x.com/i/communities/1988030401877541331" target="_blank" class="btn">Join X Community</a>
+  </div>
+
+  <h1>The great meme reset: Happens — The Humble 68</h1>
+
+  <div class="bottom-text">
+    <div class="block">
+      “I used to chase meaning.  
+      Now I just watch numbers float.”  
+    </div>
+    <div class="block">
+      “Some say 68 is random.  
+      I say it’s destiny disguised as a mistake.”  
+    </div>
+    <div class="block">
+      “You don’t find the meme.  
+      The meme finds you — when you stop trying.”  
+    </div>
   </div>
 
   <script>
@@ -118,7 +165,7 @@
         el.style.transform = `translate(${x}vw, ${y}vh) scale(${scale}) rotate(${rot}deg)`;
         el.style.opacity = opacity;
       });
-      setTimeout(animate, 1000 + Math.random() * 1200);
+      setTimeout(animate, 900 + Math.random() * 800);
     }
 
     animate();
@@ -135,7 +182,7 @@
       body.appendChild(el);
       setTimeout(() => el.style.opacity = 1, 50);
       setTimeout(() => el.remove(), 3000);
-    }, 400);
+    }, 300);
   </script>
 </body>
 </html>
